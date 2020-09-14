@@ -33,10 +33,19 @@ final class HomeViewController: UITableViewController {
             self?.startLoading(isLoading)
             self?.tableView.reloadData()
         }
-        controller.joinMeetingHandler = { [weak self] in
-            let meetinVC = MeetingViewController()
-            meetinVC.modalPresentationStyle = .fullScreen
-            self?.present(meetinVC, animated: true, completion: nil)
+        controller.joinMeetingHandler = { [weak self] username, meetingID, meetingConfig in
+            if let meetingConfig = meetingConfig {
+                let meetingVC = MeetingViewController()
+                meetingVC.controller = MeetingModuleController(username: username,
+                                                               meetingID: meetingID,
+                                                               meetingConfiguration: meetingConfig)
+                meetingVC.modalPresentationStyle = .fullScreen
+                self?.present(meetingVC, animated: true, completion: nil)
+            } else {
+                self?.presentSingleActionAlert(title: "Error",
+                                               message: "Unable to join meeting",
+                                               actionTitle: "Ok")
+            }
         }
     }
     

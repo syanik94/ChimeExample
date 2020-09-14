@@ -90,8 +90,7 @@ class MeetingModel: NSObject {
         startAudioVideoConnection()
         currentMeetingSession.audioVideo.startRemoteVideo()
     }
-    
-    
+
     func endMeeting() {
         isEnded = true
     }

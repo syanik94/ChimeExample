@@ -6,6 +6,7 @@
 //  Copyright © 2020 Yanik Simpson. All rights reserved.
 //
 
+import AmazonChimeSDK
 import Foundation
 
 class HomeModuleController {
@@ -21,7 +22,8 @@ class HomeModuleController {
     
     // Handlers
     var appointmentLoadHandler: ((Bool) -> Void)?
-    var joinMeetingHandler: (() -> Void)?
+    typealias MeetingID = String
+    var joinMeetingHandler: ((String, MeetingID, MeetingSessionConfiguration?) -> Void)?
 
     init(user: User) {
         self.user = user
@@ -41,10 +43,14 @@ class HomeModuleController {
     func joinMeeting(from appointment: Appointment) {
         isLoading = true
         
-        JoinRequestService.postJoinRequest(meetingId: appointment.doctor,
-                                           name: user.name) { [weak self] meetingConfig in
-            self?.isLoading = false
-            self?.joinMeetingHandler?()
+        let username = user.name
+        let meetingID = appointment.meetingID.uuidString
+        JoinRequestService.postJoinRequest(meetingId: meetingID,
+                                           name: username) { [weak self] meetingConfig in
+            DispatchQueue.main.async {
+                self?.isLoading = false
+                self?.joinMeetingHandler?(username, meetingID, meetingConfig)
+            }
         }
     }
 }

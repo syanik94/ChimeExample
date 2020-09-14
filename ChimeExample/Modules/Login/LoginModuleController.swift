@@ -21,6 +21,7 @@ class User {
 struct Appointment {
     let date: Date
     let doctor: String
+    let meetingID = UUID()
 }
 
 class LoginModuleController {

@@ -39,10 +39,7 @@ class LoginViewController: UIViewController {
     
     fileprivate func configureHandlers() {
         controller.invalidNameHandler = { [weak self] _ in
-            let alertVC = UIAlertController(title: "Error", message: "Please enter a username", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alertVC.addAction(cancelAction)
-            self?.present(alertVC, animated: true, completion: nil)
+            self?.presentSingleActionAlert(title: "Error", message: "Please enter a username", actionTitle: "Ok")
         }
         controller.loginHandler = { [weak self] user in
             let homeViewController = HomeViewController()
