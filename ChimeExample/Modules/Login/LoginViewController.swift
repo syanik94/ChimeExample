@@ -44,8 +44,9 @@ class LoginViewController: UIViewController {
             alertVC.addAction(cancelAction)
             self?.present(alertVC, animated: true, completion: nil)
         }
-        controller.loginHandler = { [weak self] _ in
+        controller.loginHandler = { [weak self] user in
             let homeViewController = HomeViewController()
+            homeViewController.controller = HomeModuleController(user: user)
             let navVC = UINavigationController(rootViewController: homeViewController)
             navVC.modalPresentationStyle = .fullScreen
             self?.present(navVC, animated: true, completion: nil)
@@ -90,7 +91,7 @@ class LoginViewController: UIViewController {
     
     fileprivate func makeLoginButton() -> UIButton {
         let button = UIButton(type: .system)
-        button.backgroundColor = .systemPurple
+        button.backgroundColor = .systemBlue
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false

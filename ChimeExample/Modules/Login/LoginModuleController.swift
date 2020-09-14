@@ -8,9 +8,14 @@
 
 import Foundation
 
-struct User {
+class User {
     var name: String
-    let appointments: [Appointment]
+    var appointments: [Appointment]
+    
+    init(name: String, appointments: [Appointment] = []) {
+        self.name = name
+        self.appointments = appointments
+    }
 }
 
 struct Appointment {
@@ -27,7 +32,7 @@ class LoginModuleController {
             invalidNameHandler?(false)
             return
         }
-        let user = User(name: username, appointments: [])
+        let user = User(name: username)
         loginHandler?(user)
     }
 }
