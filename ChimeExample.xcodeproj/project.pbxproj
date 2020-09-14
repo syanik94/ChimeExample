@@ -30,7 +30,6 @@
 		3D7CD27E250EF95F00870FAA /* HomeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CD27D250EF95F00870FAA /* HomeSectionHeaderView.swift */; };
 		3DA1E9D8250F230F00DD0194 /* VideoTileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E9D7250F230F00DD0194 /* VideoTileCell.swift */; };
 		3DA1E9DA250F9B6200DD0194 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E9D9250F9B6200DD0194 /* VideoModel.swift */; };
-		3DA1E9DC250F9BB500DD0194 /* MeetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E9DB250F9BB500DD0194 /* MeetingModel.swift */; };
 		3DA1E9DF250FA12000DD0194 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA1E9DE250FA12000DD0194 /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +84,6 @@
 		3D7CD27D250EF95F00870FAA /* HomeSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionHeaderView.swift; sourceTree = "<group>"; };
 		3DA1E9D7250F230F00DD0194 /* VideoTileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTileCell.swift; sourceTree = "<group>"; };
 		3DA1E9D9250F9B6200DD0194 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
-		3DA1E9DB250F9BB500DD0194 /* MeetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingModel.swift; sourceTree = "<group>"; };
 		3DA1E9DE250FA12000DD0194 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,7 +220,6 @@
 			children = (
 				3D5EAD9C250F1FDC006969CF /* MeetingModuleController.swift */,
 				3D5EAD9A250F1134006969CF /* MeetingViewController.swift */,
-				3DA1E9DB250F9BB500DD0194 /* MeetingModel.swift */,
 				3DA1E9D7250F230F00DD0194 /* VideoTileCell.swift */,
 				3DA1E9D9250F9B6200DD0194 /* VideoModel.swift */,
 			);
@@ -356,7 +353,6 @@
 				3DA1E9DF250FA12000DD0194 /* UIViewController+Extensions.swift in Sources */,
 				3D7CD27C250EF44700870FAA /* HomeModuleController.swift in Sources */,
 				3D7CD27A250EE24400870FAA /* LoginModuleController.swift in Sources */,
-				3DA1E9DC250F9BB500DD0194 /* MeetingModel.swift in Sources */,
 				3DA1E9D8250F230F00DD0194 /* VideoTileCell.swift in Sources */,
 				3D5EAD9B250F1134006969CF /* MeetingViewController.swift in Sources */,
 				3D7CD278250EDFA600870FAA /* LoginViewController.swift in Sources */,
