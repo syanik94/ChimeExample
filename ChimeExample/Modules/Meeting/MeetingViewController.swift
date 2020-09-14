@@ -12,7 +12,7 @@ class MeetingViewController: UIViewController {
     var controller: MeetingModuleController!
     
     // Views
-    let tableView = UITableView(frame: .zero, style: .plain)
+    let videoTableView = UITableView(frame: .zero, style: .plain)
     let accessoryView = UIView()
     
     lazy var micButton: UIButton = {
@@ -49,11 +49,11 @@ class MeetingViewController: UIViewController {
     
     // View Setup
     fileprivate func configureTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.isScrollEnabled = false
-        tableView.showsVerticalScrollIndicator = false
-        tableView.register(VideoTileCell.self, forCellReuseIdentifier: VideoTileCell.id)
+        videoTableView.delegate = self
+        videoTableView.dataSource = self
+        videoTableView.isScrollEnabled = false
+        videoTableView.showsVerticalScrollIndicator = false
+        videoTableView.register(VideoTileCell.self, forCellReuseIdentifier: VideoTileCell.id)
     }
         
     fileprivate func configureAccessoryView() {
@@ -78,12 +78,12 @@ class MeetingViewController: UIViewController {
         accessoryView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         accessoryView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
         
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.bottomAnchor.constraint(equalTo: accessoryView.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+        view.addSubview(videoTableView)
+        videoTableView.translatesAutoresizingMaskIntoConstraints = false
+        videoTableView.bottomAnchor.constraint(equalTo: accessoryView.topAnchor).isActive = true
+        videoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        videoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        videoTableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
     }
     
     // Actions
