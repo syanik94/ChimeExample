@@ -33,8 +33,10 @@ final class HomeViewController: UITableViewController {
             self?.startLoading(isLoading)
             self?.tableView.reloadData()
         }
-        controller.joinMeetingHandler = {
-            
+        controller.joinMeetingHandler = { [weak self] in
+            let meetinVC = MeetingViewController()
+            meetinVC.modalPresentationStyle = .fullScreen
+            self?.present(meetinVC, animated: true, completion: nil)
         }
     }
     
