@@ -45,6 +45,31 @@ class MeetingViewController: UIViewController {
         layoutContent()
         configureAccessoryView()
         configureTableView()
+        configureHandlers()
+        
+        controller.requestAVPermissions { [weak self] in
+            self?.controller.startMeeting()
+        }
+    }
+    
+    // Configuration
+    private func configureHandlers() {
+        controller.isMutedHandler = { [weak self] isMuted in
+            self?.micButton.isSelected = isMuted
+        }
+        controller.isEndedHandler = { [weak self] in
+            DispatchQueue.main.async {
+                self?.dismiss(animated: true, completion: nil)
+//                MeetingModule.shared().dismissMeeting(meetingModel)
+            }
+        }
+        controller.videoModel.localVideoUpdatedHandler = {
+            self.videoTableView.reloadRows(at: [[0,0]], with: .automatic)
+        }
+        controller.videoModel.videoUpdatedHandler = { [weak self] in
+            self?.controller.videoModel.resumeAllRemoteVideosInCurrentPageExceptUserPausedVideos()
+            self?.videoTableView.reloadData()
+        }
     }
     
     // View Setup
@@ -96,20 +121,32 @@ class MeetingViewController: UIViewController {
     }
     
     @objc fileprivate func handleEndCallTap() {
-        dismiss(animated: true, completion: nil)
+        controller.endMeeting()
     }
 }
 
 extension MeetingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return controller.videoModel.videoTileCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: VideoTileCell.id,
-                                                       for: indexPath) as? VideoTileCell else {
+                                                       for: indexPath) as? VideoTileCell,
+        indexPath.item < controller.videoModel.videoTileCount else {
             return VideoTileCell()
         }
+        let isSelf = indexPath.item == 0
+        let videoTileState = controller.videoModel.getVideoTileState(for: indexPath)
+        let displayName = controller.getVideoTileDisplayName(for: indexPath)
+        
+        if let tileState = videoTileState {
+            if tileState.isLocalTile, controller.isFrontCameraActive {
+                cell.videoRenderView.mirror = true
+            }
+            controller.bind(videoRenderView: cell.videoRenderView, tileId: tileState.tileId)
+        }
+        
         return cell
     }
     

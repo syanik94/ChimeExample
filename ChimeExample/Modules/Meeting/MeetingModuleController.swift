@@ -86,6 +86,12 @@ class MeetingModuleController: NSObject {
         currentMeetingSession.audioVideo.bindVideoView(videoView: videoRenderView, tileId: tileId)
     }
     
+    func requestAVPermissions(_ completion: () -> Void) {
+        requestVideoPermission { [weak self] _ in
+            self?.configureAudioSession()
+        }
+    }
+    
     func startMeeting() {
         configureAudioSession()
         startAudioVideoConnection()
@@ -192,7 +198,7 @@ class MeetingModuleController: NSObject {
         }
     }
     
-    private func startLocalVideo() {
+    func startLocalVideo() {
         requestVideoPermission { success in
             if success {
                 do {
